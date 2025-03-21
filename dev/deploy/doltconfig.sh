@@ -1,0 +1,1 @@
+echo $DOLTHUB_JWK | tr -d "'" | dolt creds import

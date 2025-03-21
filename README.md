@@ -1,25 +1,41 @@
-# R Projects Development Template
+<h1 align="center">
+  <img src="https://github.com/rweekly/rweekly.org/blob/gh-pages/images/icons/icon-192x192.png">
+  <br />
+  R-Weekly Curation Calendar Admin App
+</h1>
 
-This repo provides a starting template for a containerized development environment for my R projects in data science and Shiny application development, tailored to both the RStudio IDE as well as Visual Studio Code. For a more detailed description, please see the [`.devcontainer/README.md`](.devcontainer/README.md)),
+This repository contains a Shiny application for the R Weekly team of curators to manage their schedule curation windows. Once a curator logs in to the application using their R Weekly Slack channel account, they can either decline a future curation or propose to switch one of their future curation windows with another member of the team. The application automatically sends a message to the R Weekly Slack channel, ensuring the team is aware of the decline or proposed switch of a curation window.
 
-**HEADS UP**: The latest version of the development files is a fairly substantial overhaul of the setup in the screencast below. I will record another video with the updates soon!
+> R Weekly was founded on May 20, 2016. R is growing very quickly, and there are lots of great blogs, tutorials and other formats of resources coming out every day. R Weekly wants to keep track of these great things in the R community and make it more accessible to everyone.
 
-🎥 Check out this previous [Shiny Developer Series livestream](https://youtu.be/4wRiPG9LM3o) for a hands-on walkthrough of this setup!
+The R-Weekly team is composed of volunteers who are passionate about the R community. Each R-Weekly issue is assigned a curator who edits the issue content, launches an internal poll for team voting of the top highlights, and publishes the issue. Additional details on the curation process can be found on the [Release Editor FAQ](https://github.com/rweekly/rweekly.org/wiki/Release-Editor-FAQ). The team would welcome new curators! You can learn more about joining the team from the project [README](https://github.com/rweekly/rweekly.org#join-us).
 
-## Quick Start
+# calendar.admin
 
-Refer to the detailed instructions in [`.devcontainer/README.md`](.devcontainer/README.md)) for how to set up your environment to use this container setup. Once the setup is complete, you can access the Visual Studio Code and RStudio containers with the following instructions:
+<!-- badges: start -->
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+<!-- badges: end -->
 
-### Visual Studio Code Container
+The goal of calendar.admin is to ...
 
-1. Launch Visual Studio Code 
-1. Open the folder where you cloned this repository. Note that you do not open the `.devcontainer` folder, since the Remote extension will recognize this folder automatically.
-1. The container images will be built with Docker, and depending on bandwidth it could take some time. Note that the container build will be cached for future use.
-1. After the build process completes, Visual Studio Code will refresh and use the container runtime. You may need to launch the terminal separate if it does not load automatically.
+## Installation
 
-### RStudio Server Container
+You can install the development version of calendar.admin from [GitHub](https://github.com/) with:
 
-1. Follow the procedure above for launching the Visual Studio Code container. Even though you will be using the RStudio container server, you still need to get the container launched through Visual Studio Code
-1. Open a web browser and type the following in the address bar, substituting the port number with the number listed on the left side of the `ports` directive in the [`.devcontainer/docker-compose.yml`](.devcontainer/docker-compose.yml) configuration file: `http://localhost:port_number`. For example, the default port specified in this repository is `9998`, hence you would use the address `http://localhost:9998` in the address bar if you keep that port unchanged.
+``` r
+# install.packages("pak")
+pak::pak("rweekly/calendar-admin")
+```
 
+## Example
 
+This is a basic example which shows you how to solve a common problem:
+
+``` r
+library(calendar.admin)
+## basic example code
+```
+
+  ## Code of Conduct
+  
+  Please note that the calendar.admin project is released with a [Contributor Code of Conduct](https://contributor-covenant.org/version/2/1/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.

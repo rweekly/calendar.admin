@@ -1,0 +1,19 @@
+/* was .welcome-container */
+.sidebar-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+}
+
+.profile-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.welcome-text {
+    font-size: 1.0rem;
+    color: #333;
+}
