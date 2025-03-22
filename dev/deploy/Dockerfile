@@ -25,7 +25,7 @@ COPY build_nixconfig.R .
 COPY driver.R .
 
 # Copy package source installer file
-COPY calendar.admin_*.tar.gz .
+COPY builds/calendar.admin_*.tar.gz .
 
 # Set up rstats-on-nix cache
 # No need to use the cachix client inside Docker

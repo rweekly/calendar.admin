@@ -114,6 +114,16 @@ Once the login is successful run the following:
 docker push rpodcast/calendar.admin
 ```
 
+## Using GitHub Actions
+
+### Running GitHub Action Locally
+
+Use the novel [act](https://nektosact.com/) tool to run GitHub actions locally with Docker. Here is a command to test the docker build & push workflow file:
+
+```
+act --secret-file dev/deploy/.env -W '.github/workflows/build-push.yml'
+```
+
 ## App Deployment
 
 Procedure adapted from <https://hosting.analythium.io/make-your-shiny-app-fly/>
