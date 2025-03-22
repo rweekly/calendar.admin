@@ -22,7 +22,7 @@ devtools::check()
 ## Local, CRAN or Package Manager ----
 ## This will build a tar.gz that can be installed locally,
 ## sent to CRAN, or to a package manager
-devtools::build(path = "dev/deploy/builds")
+devtools::build(path = "dev/deploy")
 
 ## Docker ----
 ## If you want to deploy via a generic Dockerfile

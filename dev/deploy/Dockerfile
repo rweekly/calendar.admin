@@ -25,7 +25,7 @@ COPY build_nixconfig.R .
 COPY driver.R .
 
 # Copy package source installer file
-COPY ./builds/calendar.admin_*.tar.gz /app.tar.gz
+COPY calendar.admin_*.tar.gz app.tar.gz
 
 # Set up rstats-on-nix cache
 # No need to use the cachix client inside Docker
@@ -45,4 +45,5 @@ EXPOSE 2557
 EXPOSE 80
 
 # Run application driver script
-CMD nix-shell --run "Rscript driver.R"
+#CMD nix-shell --run "Rscript driver.R"
+CMD ["nix-shell", "--run", "Rscript driver.R"]
