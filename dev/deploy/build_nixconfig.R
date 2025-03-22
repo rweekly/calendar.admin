@@ -2,7 +2,7 @@
 library(rix)
 
 if (nzchar(Sys.getenv("INSTALL_APP_PACKAGE"))) {
-  local_r_pkgs <- list.files(path = getwd(), pattern = "calendar.admin_*")[1]
+  local_r_pkgs <- "app.tar.gz"
 } else {
   local_r_pkgs <- NULL
 }
