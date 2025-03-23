@@ -54,9 +54,12 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
+      - name: Setup flyctl
+        uses: superfly/flyctl-actions/setup-flyctl@master
+
       - name: First Deployment to fly.io
-        run: nix-shell --run "cd dev/deploy; flyctl launch -c fly-prod.toml"
+        run: flyctl launch -c fly-prod.toml
 
       - name: Add environment secrets to fly.io deployment
-        run: nix-shell --run "echo \"AUTH0_KEY=$AUTH0_KEY AUTH0_SECRET=$AUTH0_SECRET AUTH0_USER=$AUTH0_USER DOLTHUB_CREDS=$DOLTHUB_CREDS DOLTHUB_JWK=$DOLTHUB_JWK DOLTHUB_TOKEN=$DOLTHUB_TOKEN SLACK_TEAM_ID=$SLACK_TEAM_ID SLACK_TEST_USER_ID=$SLACK_TEST_USER_ID SLACK_TOKEN=$SLACK_TOKEN | xargs flyctl secrets -a rwcaladmin set\""
+        run: echo "AUTH0_KEY=$AUTH0_KEY AUTH0_SECRET=$AUTH0_SECRET AUTH0_USER=$AUTH0_USER DOLTHUB_CREDS=$DOLTHUB_CREDS DOLTHUB_JWK=$DOLTHUB_JWK DOLTHUB_TOKEN=$DOLTHUB_TOKEN SLACK_TEAM_ID=$SLACK_TEAM_ID SLACK_TEST_USER_ID=$SLACK_TEST_USER_ID SLACK_TOKEN=$SLACK_TOKEN" | xargs flyctl secrets -a rwcaladmin set
 
