@@ -9,9 +9,6 @@ primary_region = 'bos'
 [build]
   image = 'rpodcast/calendar.admin:main'
 
-[env]
-  GOLEM_CONFIG_ACTIVE = 'production'
-
 [http_service]
   internal_port = 2557
   force_https = true
