@@ -18,4 +18,4 @@ primary_region = 'bos'
   processes = ['app']
 
 [env]
-  GOLEM_CONFIG_ACTIVE=production
+  GOLEM_CONFIG_ACTIVE = "production"

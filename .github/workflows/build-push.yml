@@ -57,10 +57,16 @@ jobs:
       - name: Setup flyctl
         uses: superfly/flyctl-actions/setup-flyctl@master
 
-      - name: First Deployment to fly.io
+      - name: Register app on fly.io
+        continue-on-error: true
+        run: |
+          flyctl apps create rwcaladmin
+        shell: bash
+
+      - name: Deployment to fly.io
         run: |
           cd dev/deploy
-          flyctl launch -c fly-prod.toml
+          flyctl deploy -c fly-prod.toml
         shell: bash
 
       - name: Add environment secrets to fly.io deployment
