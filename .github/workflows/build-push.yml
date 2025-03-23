@@ -8,9 +8,20 @@ on:
   workflow_dispatch:
 
 env:
-  # Use docker.io for Docker Hub if empty
   REGISTRY: docker.io
   IMAGE_NAME: "rpodcast/calendar.admin"
+  AUTH0_KEY: ${{ secrets.AUTH0_KEY }}
+  AUTH0_SECRET: ${{ secrets.AUTH0_SECRET }}
+  AUTH0_TOKEN: ${{ secrets.AUTH0_TOKEN }}
+  DOLTHUB_CREDS: ${{ secrets.DOLTHUB_CREDS }}
+  DOLTHUB_JWK: ${{ secrets.DOLTHUB_JWK }}
+  DOLTHUB_TOKEN: ${{ secrets.DOLTHUB_TOKEN }}
+  SLACK_TEAM_ID: ${{ secrets.SLACK_TEAM_ID }}
+  SLACK_TEST_USER_ID: ${{ secrets.SLACK_TEST_USER_ID }}
+  SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
+  FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+  DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+  DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
 
 jobs:
   push_to_registry:
@@ -26,8 +37,8 @@ jobs:
       - name: Log in to Docker Hub
         uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          username: ${{ env.DOCKER_USERNAME }}
+          password: ${{ env.DOCKERHUB_TOKEN }}
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
@@ -42,4 +53,10 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
+      - name: First Deployment to fly.io
+        run: nix-shell --run "cd dev/deploy; flyctl launch -c fly-prod.toml"
+
+      - name: Add environment secrets to fly.io deployment
+        run: nix-shell --run "echo \"AUTH0_KEY=$AUTH0_KEY AUTH0_SECRET=$AUTH0_SECRET AUTH0_USER=$AUTH0_USER DOLTHUB_CREDS=$DOLTHUB_CREDS DOLTHUB_JWK=$DOLTHUB_JWK DOLTHUB_TOKEN=$DOLTHUB_TOKEN SLACK_TEAM_ID=$SLACK_TEAM_ID SLACK_TEST_USER_ID=$SLACK_TEST_USER_ID SLACK_TOKEN=$SLACK_TOKEN | xargs flyctl secrets -a rwcaladmin set\""
 

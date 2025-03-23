@@ -25,7 +25,7 @@ production:
   url: rwcaladmin.fly.io
   port: 2557
 staging:
-  dolt_locak: no
+  dolt_local: no
   url: rwcaladmin-staging.fly.io
   port: 2557
 dev:
