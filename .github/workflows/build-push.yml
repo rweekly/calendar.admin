@@ -64,7 +64,7 @@ jobs:
         shell: bash
 
       - name: Stage environment variable secrets to first fly.io deployment
-        run: echo "AUTH0_KEY=$AUTH0_KEY AUTH0_SECRET=$AUTH0_SECRET AUTH0_USER=$AUTH0_USER DOLTHUB_CREDS=$DOLTHUB_CREDS DOLTHUB_JWK=$DOLTHUB_JWK DOLTHUB_TOKEN=$DOLTHUB_TOKEN SLACK_TEAM_ID=$SLACK_TEAM_ID SLACK_TEST_USER_ID=$SLACK_TEST_USER_ID SLACK_TOKEN=$SLACK_TOKEN" | xargs flyctl secrets -a rwcaladmin --stage set
+        run: echo "AUTH0_KEY=$AUTH0_KEY AUTH0_SECRET=$AUTH0_SECRET AUTH0_USER=$AUTH0_USER DOLTHUB_CREDS=$DOLTHUB_CREDS DOLTHUB_JWK=$DOLTHUB_JWK DOLTHUB_TOKEN=$DOLTHUB_TOKEN SLACK_TEAM_ID=$SLACK_TEAM_ID SLACK_TEST_USER_ID=$SLACK_TEST_USER_ID SLACK_TOKEN=$SLACK_TOKEN" | xargs flyctl secrets set -a rwcaladmin --stage
 
       - name: Deploy to fly.io
         run: |
