@@ -10,8 +10,7 @@
 mod_table_ui <- function(id) {
   ns <- NS(id)
   tagList(
-    reactable::reactableOutput(ns("table")),
-    verbatimTextOutput(ns("state"))
+    reactable::reactableOutput(ns("table"))
   )
 }
     
@@ -25,11 +24,6 @@ mod_table_server <- function(id, schedule_df, curator_df, reset_selection = NULL
     output$table <- reactable::renderReactable({
       req(schedule_df())
       create_schedule_table(schedule_df(), curator_df)
-    })
-
-    output$state <- renderPrint({
-      state <- req(reactable::getReactableState("table"))
-      print(state)
     })
 
     # reactive for selected entry
