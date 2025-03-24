@@ -1,0 +1,24 @@
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+
+app = 'rwcaladmin-staging'
+primary_region = 'ord'
+
+[build]
+  image = 'rpodcast/calendar.admin:dev'
+
+[http_service]
+  internal_port = 2557
+  force_https = true
+  auto_stop_machines = 'stop'
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[env]
+  GOLEM_CONFIG_ACTIVE = "staging"
+
+[[vm]]
+  size = "shared-cpu-4x"
+  memory = "4GB"
+  cpus = 4
+  cpu_kind = "shared"
