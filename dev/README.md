@@ -169,12 +169,12 @@ cat .env | tr '\n' ' ' | xargs flyctl secrets -a rwcaladmin-staging set
 # this will error if the app exists, hence in GH action need to add flag for continuing to next step if error occurs in this step
 fly apps create rwcaladmin
 
-# deploy from the configuraiton file
-flyctl deploy -c fly-prod.toml
-
 # adding secrets if running locally
 cat .env | tr '\n' ' ' | xargs flyctl secrets -a rwcaladmin set
 
 # adding secrets in GH action
 echo "AUTH0_KEY=$AUTH0_KEY AUTH0_SECRET=$AUTH0_SECRET AUTH0_USER=$AUTH0_USER DOLTHUB_CREDS=$DOLTHUB_CREDS DOLTHUB_JWK=$DOLTHUB_JWK DOLTHUB_TOKEN=$DOLTHUB_TOKEN SLACK_TEAM_ID=$SLACK_TEAM_ID SLACK_TEST_USER_ID=$SLACK_TEST_USER_ID SLACK_TOKEN=$SLACK_TOKEN" | xargs flyctl secrets -a rwcaladmin set
+
+# deploy from the configuration file
+flyctl deploy --wait-timeout "10m0s" -c fly-prod.toml
 ```
