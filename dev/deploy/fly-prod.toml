@@ -4,7 +4,7 @@
 #
 
 app = 'rwcaladmin'
-primary_region = 'bos'
+primary_region = 'ord'
 
 [build]
   image = 'rpodcast/calendar.admin:main'
@@ -19,3 +19,9 @@ primary_region = 'bos'
 
 [env]
   GOLEM_CONFIG_ACTIVE = "production"
+
+[[vm]]
+  size = "shared-cpu-4x"
+  memory = "4GB"
+  cpus = 4
+  cpu_kind = "shared"
