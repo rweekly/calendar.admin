@@ -18,7 +18,8 @@ ui_valid <- function() {
   tagList(
     page_sidebar(
       window_title = "rwcalendar-admin",
-      title = "R Weekly Curation Calendar Admin",
+      title = "R Weekly Curation Calendar Admin Application",
+      theme = bslib::bs_theme(preset = "pulse"),
       sidebar = sidebar(
         title = mod_auth_info_ui("auth_info_1"),
         width = 300,
