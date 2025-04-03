@@ -36,11 +36,19 @@ mod_auth_info_server <- function(id, curator_df){
           htmltools::span(
             class = "welcome-text",
             glue::glue("Welcome, {user_info()$short_name}!")
+          ),
+          shiny::actionLink(
+            ns("logout"),
+            "Logout"
           )
         )
         #htmltools::tags$img(user_info()$picture),
         #htmltools::tags$p(user_info()$name)
       )
+    })
+
+    observeEvent(input$logout, {
+      auth0::logout()
     })
 
     # return user_info reactive
