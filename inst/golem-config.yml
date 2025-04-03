@@ -2,7 +2,7 @@ default:
   golem_name: calendar.admin
   golem_version: 0.0.0.9002
   app_prod: no
-  dolt_local: no
+  dolt_local: yes
   repo: rpodcast/curation-schedule
   from_owner: rpodcast
   from_repo_name: curation-schedule
@@ -12,6 +12,7 @@ default:
   slack_channel: '#random'
   url: 127.0.0.1
   port: 2557
+  app_type: local
 production:
   app_prod: yes
   dolt_local: no
@@ -24,9 +25,11 @@ production:
   slack_channel: '#dev'
   url: rwcaladmin.fly.io
   port: 2557
+  app_type: production
 staging:
   dolt_local: no
   url: rwcaladmin-staging.fly.io
   port: 2557
+  app_type: staging
 dev:
   golem_wd: !expr golem::pkg_path()

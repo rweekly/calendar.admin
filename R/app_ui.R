@@ -44,7 +44,7 @@ ui_valid <- function() {
       ),
       layout_columns(
         card(
-          card_header("R Weekly Curation Calendar Admin App"),
+          card_header(glue::glue("Application version {version} - {app_type}", version = golem::get_golem_version(), app_type = get_golem_config("app_type"))),
           card_body(
             htmltools::includeMarkdown(app_sys("app", "doc", "description.md"))
           )
