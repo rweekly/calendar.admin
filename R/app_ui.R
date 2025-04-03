@@ -33,13 +33,14 @@ ui_valid <- function() {
         uiOutput("current_issue_selected"),
         actionButton(
           "decline_curation",
-          label = "Decline Curation"
+          label = "Decline Curation",
+          class = "btn-info"
         ),
         actionButton(
           "switch_curation",
-          label = "Propose Switch"
-        ),
-        auth0::logoutButton()
+          label = "Propose Switch",
+          class = "btn-success"
+        )
       ),
       layout_columns(
         card(
