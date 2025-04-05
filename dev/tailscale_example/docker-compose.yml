@@ -1,0 +1,37 @@
+services:
+  ts-rweeklycal-admin-staging:
+    image: tailscale/tailscale:latest
+    container_name: ts-rweeklycal-admin-staging
+    hostname: rweeklycal-admin-staging
+    env_file:
+      - .env
+    environment:
+      - TS_AUTHKEY=${TS_AUTHKEY}
+      - TS_EXTRA_ARGS=--advertise-tags=tag:container
+      - TS_SERVE_CONFIG=/config/rweeklycal-admin-staging.json
+      - TS_STATE_DIR=/var/lib/tailscale
+    volumes:
+      - ${PWD}/ts-rweeklycal-admin-staging/state:/var/lib/tailscale
+      - ${PWD}/ts-rweeklycal-admin-staging/config:/config
+      - /dev/net/tun:/dev/net/tun
+    cap_add:
+      - net_admin
+      - sys_module
+    restart: unless-stopped
+  rweeklycal-admin-staging:
+    image: rpodcast/calendar.admin:staging
+    container_name: rweeklycal-admin-staging
+    restart: unless-stopped
+    network_mode: service:ts-rweeklycal-admin-staging
+    env_file:
+      - .env
+    environment:
+      - SLACK_TOKEN=${SLACK_TOKEN}
+      - SLACK_TEAM_ID=${SLACK_TEAM_ID}
+      - SLACK_TEST_USER_ID=${SLACK_TEST_USER_ID}
+      - AUTH0_USER=${AUTH0_USER}
+      - AUTH0_SECRET=${AUTH0_SECRET}
+      - DOLTHUB_TOKEN=${DOLTHUB_TOKEN}
+      - DOLTHUB_CREDS=${DOLTHUB_CREDS}
+      - DOLTHUB_JWK=${DOLTHUB_JWK}
+      - SHINY_PORT=3557
