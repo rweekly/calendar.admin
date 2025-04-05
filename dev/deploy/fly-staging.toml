@@ -4,7 +4,7 @@ app = 'rwcaladmin-staging'
 primary_region = 'ord'
 
 [build]
-  image = 'rpodcast/calendar.admin:dev'
+  image = 'rpodcast/calendar.admin:staging'
 
 [http_service]
   internal_port = 2557
