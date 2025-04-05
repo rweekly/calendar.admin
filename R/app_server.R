@@ -250,7 +250,7 @@ app_server <- function(input, output, session) {
     shiny::removeNotification("decline_process")
     shiny::showNotification(
       "Submission successful!",
-      type = "success"
+      type = "message"
     )
 
     reset_table_selection_rv(runif(1))
