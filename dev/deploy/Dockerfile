@@ -40,10 +40,13 @@ RUN nix-build
 # trick to cache the package deps a sa layer
 RUN nix-shell --run exit
 
+ARG shiny_port_value=1557
+ENV SHINY_PORT=${shiny_port_value}
+
 # expose necessary port
-EXPOSE 2557
-EXPOSE 80
+EXPOSE ${shiny_port_value}
 
 # Run application driver script
 #CMD nix-shell --run "Rscript driver.R"
-CMD ["nix-shell", "--run", "Rscript driver.R"]
+#CMD ["nix-shell", "--run", "Rscript driver.R"]
+CMD ["nix-shell", "--run", "Rscript -e \"options(shiny.port=as.numeric(Sys.getenv('SHINY_PORT')), shiny.host='0.0.0.0', auth0_config_file=system.file('app/_auth0.yml',package='calendar.admin'), auth0_disable=FALSE); library(calendar.admin); calendar.admin::run_app()\""]

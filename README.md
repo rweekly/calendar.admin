@@ -10,31 +10,9 @@ This repository contains a Shiny application for the R Weekly team of curators t
 
 The R-Weekly team is composed of volunteers who are passionate about the R community. Each R-Weekly issue is assigned a curator who edits the issue content, launches an internal poll for team voting of the top highlights, and publishes the issue. Additional details on the curation process can be found on the [Release Editor FAQ](https://github.com/rweekly/rweekly.org/wiki/Release-Editor-FAQ). The team would welcome new curators! You can learn more about joining the team from the project [README](https://github.com/rweekly/rweekly.org#join-us).
 
-# calendar.admin
+## Development Instructions
 
-<!-- badges: start -->
-[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-<!-- badges: end -->
-
-The goal of calendar.admin is to ...
-
-## Installation
-
-You can install the development version of calendar.admin from [GitHub](https://github.com/) with:
-
-``` r
-# install.packages("pak")
-pak::pak("rweekly/calendar-admin")
-```
-
-## Example
-
-This is a basic example which shows you how to solve a common problem:
-
-``` r
-library(calendar.admin)
-## basic example code
-```
+See the [developer guide](dev/README.md) for complete details on the development environment and infrastructure used by this application.
 
   ## Code of Conduct
   
