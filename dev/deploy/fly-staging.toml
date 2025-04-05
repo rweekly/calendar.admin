@@ -7,7 +7,7 @@ primary_region = 'ord'
   image = 'rpodcast/calendar.admin:staging'
 
 [http_service]
-  internal_port = 2557
+  internal_port = 3557
   force_https = true
   auto_stop_machines = 'stop'
   auto_start_machines = true
