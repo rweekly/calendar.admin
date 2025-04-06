@@ -244,7 +244,8 @@ app_server <- function(input, output, session) {
       to_branch_owner_name = get_golem_config("to_owner"),
       to_branch_repo_name = get_golem_config("to_repo_name"),
       notify_slack_channel = TRUE,
-      slack_channel = get_golem_config("slack_channel")
+      slack_channel = get_golem_config("slack_channel"),
+      notify_user = get_golem_config("notify_user")
     )
 
     shiny::removeNotification("decline_process")
@@ -282,7 +283,8 @@ app_server <- function(input, output, session) {
       to_branch_owner_name = get_golem_config("to_owner"),
       to_branch_repo_name = get_golem_config("to_repo_name"),
       notify_slack_channel = TRUE,
-      slack_channel = get_golem_config("slack_channel")
+      slack_channel = get_golem_config("slack_channel"),
+      notify_user = get_golem_config("notify_user")
     )
 
     shiny::removeNotification("switch_process")

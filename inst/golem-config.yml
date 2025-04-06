@@ -10,6 +10,7 @@ default:
   to_repo_name: curation-schedule
   to_branch: main
   slack_channel: '#random'
+  notify_user: no
   port: 2557
   app_type: local
 production:
@@ -22,6 +23,7 @@ production:
   to_repo_name: curation-schedule
   to_branch: main
   slack_channel: '#dev'
+  notify_user: yes
   port: 4557
   app_type: production
 staging:
