@@ -27,7 +27,7 @@ ui_valid <- function() {
           "curator_filter",
           label = "Display Entries",
           choices = c("Only mine" = "me", "All" = "all"),
-          selected = "all",
+          selected = "me",
           inline = TRUE
         ),
         uiOutput("current_issue_selected"),
