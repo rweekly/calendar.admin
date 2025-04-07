@@ -3,6 +3,10 @@ name: Build app image and deploy to fly.io - Staging
 on:
   push:
     branches: [ "staging" ]
+    paths:
+      - 'R/**'
+      - 'DESCRIPTION'
+      - 'dev/deploy/**'
   workflow_dispatch:
 
 env:
