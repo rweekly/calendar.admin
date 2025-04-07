@@ -29,6 +29,7 @@ golem::add_module(name = "table", with_test = FALSE, fct = "tableutils")
 golem::add_fct("manage", with_test = FALSE)
 golem::add_utils("slack", with_test = FALSE)
 golem::add_utils("dolt", with_test = FALSE)
+golem::add_fct("notify", with_test = FALSE)
 
 ## External resources
 ## Creates .js and .css files at inst/app/www

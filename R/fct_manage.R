@@ -42,7 +42,9 @@ submit_decline <- function(
   to_branch_repo_name = "curation-schedule",
   submit_pr = TRUE,
   notify_slack_channel = FALSE,
-  slack_channel = "#random") {
+  slack_channel = "#random",
+  notify_user = TRUE
+) {
   
   if (!requireNamespace("doltr", quietly = TRUE)) {
     stop(
@@ -51,7 +53,6 @@ submit_decline <- function(
     )
   }
 
-  browser()
   # initialize variables
   branch_name <- glue::glue("decline_{issue_selected_df$issue_id}")
   pr_title <- glue::glue("Decline {issue_selected_df$issue_id} from {issue_selected_df$curator}")
@@ -107,7 +108,8 @@ submit_decline <- function(
       curation_start = issue_selected_df$from,
       curation_end = issue_selected_df$to,
       channel = slack_channel,
-      repo = get_golem_config("repo")
+      repo = get_golem_config("repo"),
+      notify_user = notify_user
     )
   }
 
@@ -127,7 +129,9 @@ submit_switch <- function(
   to_branch_repo_name = "curation-schedule",
   notify_slack_channel = FALSE,
   submit_pr = TRUE,
-  slack_channel = "#random") {
+  slack_channel = "#random",
+  notify_user = TRUE
+) {
   
   if (!requireNamespace("doltr", quietly = TRUE)) {
     stop(
@@ -188,7 +192,8 @@ submit_switch <- function(
       switch_curation_start = "2025-06-09",
       switch_curation_end = "2025-06-16",
       channel = slack_channel,
-      repo = get_golem_config("repo")
+      repo = get_golem_config("repo"),
+      notify_user = notify_user
     )
   }
 

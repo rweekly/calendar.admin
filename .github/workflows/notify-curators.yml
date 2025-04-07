@@ -1,0 +1,38 @@
+name: Notify curator of current issue
+
+on:
+  schedule:
+    - cron: "5 4 * * 5" 
+  workflow_dispatch:
+
+env:
+  SLACK_TEAM_ID: ${{ secrets.SLACK_TEAM_ID }}
+  SLACK_TEST_USER_ID: ${{ secrets.SLACK_TEST_USER_ID }}
+  SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
+
+jobs:
+  push_to_registry:
+    name: Push Docker image to Docker Hub
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+        with:
+          logger: pretty
+          log-directives: nix_installer=trace
+          backtrace: full
+
+      - name: Setup rstats-on-nix cache
+        uses: cachix/cachix-action@v15
+        with:
+          name: rstats-on-nix
+
+      - name: Build development environment
+        run: |
+          nix-build
+
+      - name: Send notification to curator
+        run: nix-shell --run "Rscript -e \"devtools::load_all(); reminder_driver(channel = "#random", notify_user = FALSE)\""

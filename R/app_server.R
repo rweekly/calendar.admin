@@ -221,11 +221,21 @@ app_server <- function(input, output, session) {
   # process curation decline
   observeEvent(input$decline_confirm, {
     shiny::removeModal()
-
-    shiny::showNotification(
-      "Processing ...",
-      duration = NULL,
-      id = "decline_process"
+    # shiny::showNotification(
+    #   "Processing ...",
+    #   duration = NULL,
+    #   id = "decline_process"
+    # )
+    shiny::showModal(
+      shiny::modalDialog(
+        title = "Hang Tight!",
+        tagList(
+          tags$h5("Please do not close the window while the hard-working R session processes your request.")
+        ),
+        size = "l",
+        footer = NULL,
+        easyClose = FALSE
+      )
     )
 
     conn <- create_dolt_conn(
@@ -244,13 +254,15 @@ app_server <- function(input, output, session) {
       to_branch_owner_name = get_golem_config("to_owner"),
       to_branch_repo_name = get_golem_config("to_repo_name"),
       notify_slack_channel = TRUE,
-      slack_channel = get_golem_config("slack_channel")
+      slack_channel = get_golem_config("slack_channel"),
+      notify_user = get_golem_config("notify_user")
     )
 
-    shiny::removeNotification("decline_process")
+    #shiny::removeNotification("decline_process")
+    shiny::removeModal()
     shiny::showNotification(
       "Submission successful!",
-      type = "success"
+      type = "message"
     )
 
     reset_table_selection_rv(runif(1))
@@ -259,10 +271,21 @@ app_server <- function(input, output, session) {
   # process curation switch
   observeEvent(input$switch_confirm, {
     shiny::removeModal()
-    shiny::showNotification(
-      "Processing ...",
-      duration = NULL,
-      id = "switch_process"
+    # shiny::showNotification(
+    #   "Processing ...",
+    #   duration = NULL,
+    #   id = "switch_process"
+    # )
+    shiny::showModal(
+      shiny::modalDialog(
+        title = "Hang Tight!",
+        tagList(
+          tags$h5("Please do not close the window while the hard-working R session processes your request.")
+        ),
+        size = "l",
+        footer = NULL,
+        easyClose = FALSE
+      )
     )
 
     conn <- create_dolt_conn(
@@ -282,10 +305,12 @@ app_server <- function(input, output, session) {
       to_branch_owner_name = get_golem_config("to_owner"),
       to_branch_repo_name = get_golem_config("to_repo_name"),
       notify_slack_channel = TRUE,
-      slack_channel = get_golem_config("slack_channel")
+      slack_channel = get_golem_config("slack_channel"),
+      notify_user = get_golem_config("notify_user")
     )
 
-    shiny::removeNotification("switch_process")
+    #shiny::removeNotification("switch_process")
+    shiny::removeModal()
     shiny::showNotification(
       "Request submitted!",
       type = "default"

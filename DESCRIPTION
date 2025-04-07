@@ -1,6 +1,6 @@
 Package: calendar.admin
 Title: R Weekly Calendar Admin App
-Version: 0.0.0.9005
+Version: 0.0.0.9008
 Authors@R: 
     person("Eric", "Nantz", , "theRcast@gmail.com", role = c("aut", "cre"))
 Description: Shiny application for managing the R Weekly team issue curation.
