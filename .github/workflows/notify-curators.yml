@@ -35,4 +35,4 @@ jobs:
           nix-build
 
       - name: Run driver function
-        run: nix-shell --run "Rscript -e \"devtools::load_all(); reminder_driver(channel = '#random', notify_user = FALSE)\""
+        run: nix-shell --run "Rscript -e \"devtools::load_all(); reminder_driver(channel = '#dev', notify_user = TRUE)\""
