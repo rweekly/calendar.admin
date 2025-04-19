@@ -11,8 +11,8 @@ env:
   SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
 
 jobs:
-  push_to_registry:
-    name: Push Docker image to Docker Hub
+  send_message:
+    name: Send notification on Slack to curator and backup
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
@@ -34,5 +34,5 @@ jobs:
         run: |
           nix-build
 
-      - name: Send notification to curator
-        run: nix-shell --run "Rscript -e \"devtools::load_all(); reminder_driver(channel = "#random", notify_user = FALSE)\""
+      - name: Run driver function
+        run: nix-shell --run "Rscript -e \"devtools::load_all(); reminder_driver(channel = '#dev', notify_user = TRUE)\""

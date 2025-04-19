@@ -1,6 +1,6 @@
 Package: calendar.admin
 Title: R Weekly Calendar Admin App
-Version: 0.0.0.9008
+Version: 0.0.0.9009
 Authors@R: 
     person("Eric", "Nantz", , "theRcast@gmail.com", role = c("aut", "cre"))
 Description: Shiny application for managing the R Weekly team issue curation.
@@ -8,7 +8,7 @@ License: MIT + file LICENSE
 URL: https://github.com/rweekly/calendar-admin
 BugReports: https://github.com/rweekly/calendar-admin/issues
 Depends: 
-    R (>= 4.0)
+    R (>= 4.1.0)
 Imports: 
     auth0,
     bslib,

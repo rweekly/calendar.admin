@@ -1,4 +1,5 @@
-FROM ubuntu:latest
+# Stage 1: nix env without app package
+FROM ubuntu:latest AS base
 
 # install curl
 RUN apt update -y
@@ -15,23 +16,39 @@ RUN curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/
 
 # Set env vars for Nix installation
 ENV PATH="${PATH}:/nix/var/nix/profiles/default/bin"
-ENV INSTALL_APP_PACKAGE=1
+#ENV INSTALL_APP_PACKAGE=1
 ENV user=root
 
 # Copy bootstrapping env script
 COPY build_nixconfig.R .
-
-# Copy app driver script
-COPY driver.R .
-
-# Copy package source installer file
-COPY calendar.admin_*.tar.gz app.tar.gz
 
 # Set up rstats-on-nix cache
 # No need to use the cachix client inside Docker
 RUN nix-shell --run "Rscript -e 'rix::setup_cachix()'"
 
 # This will overwrite the default.nix we downloaded with a new one
+RUN nix-shell --run "Rscript build_nixconfig.R"
+
+# build the environment
+RUN nix-build
+
+# Stage 2: nix env plus app package
+FROM base
+
+# Set env vars
+ENV INSTALL_APP_PACKAGE=1
+ENV user=root
+
+# Copy app driver script
+COPY driver.R .
+
+# Copy bootstrapping env script
+COPY build_nixconfig.R .
+
+# Copy package source installer file
+COPY calendar.admin_*.tar.gz app.tar.gz
+
+# Generate a new default.nix with the package added
 RUN nix-shell --run "Rscript build_nixconfig.R"
 
 # build the environment
