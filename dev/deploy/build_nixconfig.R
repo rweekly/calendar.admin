@@ -8,7 +8,7 @@ if (nzchar(Sys.getenv("INSTALL_APP_PACKAGE"))) {
 }
 
 rix(
-  date = "2025-01-14",
+  date = "2025-04-16",
   project_path = getwd(),
   r_pkgs = c(
     "tibble",
@@ -36,7 +36,8 @@ rix(
     "testthat",
     "slackr",
     "markdown",
-    "dotenv"
+    "dotenv",
+    "rix"
   ),
   git_pkgs = list(
     list(
