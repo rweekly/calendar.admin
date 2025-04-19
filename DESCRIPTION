@@ -8,7 +8,7 @@ License: MIT + file LICENSE
 URL: https://github.com/rweekly/calendar-admin
 BugReports: https://github.com/rweekly/calendar-admin/issues
 Depends: 
-    R (>= 4.0)
+    R (>= 4.1.0)
 Imports: 
     auth0,
     bslib,
