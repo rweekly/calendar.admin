@@ -4,7 +4,8 @@ on:
   schedule:
     - cron: "5 4 * * 5" 
   workflow_dispatch:
-
+permissions:
+  action: write
 env:
   SLACK_TEAM_ID: ${{ secrets.SLACK_TEAM_ID }}
   SLACK_TEST_USER_ID: ${{ secrets.SLACK_TEST_USER_ID }}
@@ -36,3 +37,6 @@ jobs:
 
       - name: Run driver function
         run: nix-shell --run "Rscript -e \"devtools::load_all(); reminder_driver(channel = '#dev', notify_user = TRUE)\""
+
+      - uses: gautamkrishnar/keepalive-workflow@v2 # using the workflow with default settings
+
